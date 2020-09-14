@@ -1,15 +1,10 @@
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import {
-  body,
-  validationResult,
-  Result,
-  ValidationError,
-} from "express-validator";
-import { RequestValidationError } from "../errors/request-validation";
+import { body } from "express-validator";
 import { User } from "../models/user";
 import { BadRequestError } from "../errors/bad-req-error";
 import { validateRequest } from "../middlewares/validate-request";
+import { Password } from "../services/password";
 
 const router = express.Router();
 
@@ -34,8 +29,30 @@ router.post(
     const existingUser = await User.findOne({ email });
 
     if (!existingUser) {
-      throw new BadRequestError("There is no such user");
+      throw new BadRequestError("Invalid credentials");
     }
+
+    const passMatch = await Password.compare(existingUser.password, password);
+
+    if (!passMatch) {
+      throw new BadRequestError("Invalid credentials");
+    }
+
+    // Generate JWT
+    const userJwt = jwt.sign(
+      {
+        id: existingUser.id,
+        email: existingUser.email,
+      },
+      process.env.JWT_KEY!
+    );
+
+    // store it in the session object
+    req.session = {
+      jwt: userJwt,
+    };
+
+    res.status(200).send(existingUser);
   }
 );
 
