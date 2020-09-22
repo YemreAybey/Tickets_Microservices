@@ -1,14 +1,13 @@
 import mongoose from 'mongoose';
 import request from 'supertest';
 import app from '../../app';
-import { Order } from '../../models/order';
 import { Ticket } from '../../models/ticket';
-// import { natsWrapper } from '../../nats-wrapper';
 
 const buildTicket = async (num: number) => {
   const ticket = Ticket.build({
     title: 'first',
     price: num,
+    id: mongoose.Types.ObjectId().toHexString(),
   });
 
   await ticket.save();

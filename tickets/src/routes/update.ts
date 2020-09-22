@@ -3,6 +3,7 @@ import {
   NotFoundError,
   requireAuth,
   ForbiddenRequestError,
+  BadRequestError,
 } from '@eatickets/common';
 import { body } from 'express-validator';
 import { validateRequest } from '@eatickets/common';
@@ -36,6 +37,10 @@ router.put(
 
     if (!ticket) {
       throw new NotFoundError();
+    }
+
+    if (ticket.orderId) {
+      throw new BadRequestError('Ticket is reserved please try later');
     }
 
     if (ticket.userId !== req.currentUser!.id) {
