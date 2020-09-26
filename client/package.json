@@ -18,7 +18,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.8.2",
+    "react-stripe-checkout": "^2.6.3",
+    "react-text-mask": "^5.4.3",
     "react-toast-notifications": "^2.4.0",
+    "text-mask-addons": "^3.8.0",
     "yup": "^0.29.3"
   }
 }

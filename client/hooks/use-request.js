@@ -1,21 +1,21 @@
-import axios from "axios";
-import { useToasts } from "react-toast-notifications";
+import axios from 'axios';
+import { useToasts } from 'react-toast-notifications';
 
 const useRequest = ({ url, method, onSuccess }) => {
   const { addToast } = useToasts();
 
-  const doRequest = async (data) => {
+  const doRequest = async data => {
     try {
       const res = await axios[method](url, data);
       if (onSuccess) {
-        onSuccess();
+        onSuccess(res.data);
       }
       return res.data;
     } catch (err) {
       console.log(err);
-      err.response.data.errors.forEach((e) => {
+      err.response.data.errors.forEach(e => {
         addToast(e.message, {
-          appearance: "error",
+          appearance: 'error',
           autoDismiss: true,
         });
       });

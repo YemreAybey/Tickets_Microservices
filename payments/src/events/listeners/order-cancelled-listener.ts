@@ -1,16 +1,16 @@
 import {
-  Listener,
   OrderCancelledEvent,
-  OrderStatus,
   Subjects,
+  Listener,
+  OrderStatus,
 } from '@eatickets/common';
 import { Message } from 'node-nats-streaming';
+import { queueGroupName } from './queue-group-name';
 import { Order } from '../../models/order';
-import { QUEUE_GROUP_NAME } from './que-group-name';
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
-  readonly subject = Subjects.OrderCancelled;
-  readonly queueGroupName = QUEUE_GROUP_NAME;
+  subject: Subjects.OrderCancelled = Subjects.OrderCancelled;
+  queueGroupName = queueGroupName;
 
   async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
     const order = await Order.findOne({
@@ -23,7 +23,6 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
     }
 
     order.set({ status: OrderStatus.Cancelled });
-
     await order.save();
 
     msg.ack();

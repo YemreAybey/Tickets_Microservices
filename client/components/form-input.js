@@ -1,25 +1,34 @@
-import { ErrorMessage } from "@hookform/error-message";
+import { ErrorMessage } from '@hookform/error-message';
 
-const FormInput = ({ name, label, defaultValue, reference, errors, type }) => {
+const FormInput = ({
+  name,
+  label,
+  defaultValue,
+  reference,
+  errors,
+  type,
+  placeholder,
+}) => {
   const divStyle = {
-    borderColor: errors[name] ? "red" : "initial",
+    borderColor: errors[name] ? 'red' : 'initial',
   };
 
   const errorStyle = {
-    color: "red",
-    fontSize: "11px",
+    color: 'red',
+    fontSize: '11px',
   };
 
   return (
-    <div className="form-roup my-2">
+    <div className='form-roup my-2'>
       <label>{label}</label>
       <input
         name={name}
-        defaultValue={defaultValue || ""}
+        defaultValue={defaultValue || ''}
         ref={reference}
-        className="form-control"
+        className='form-control'
         style={divStyle}
-        type={type || "text"}
+        type={type || 'text'}
+        placeholder={placeholder}
       />
       <span style={errorStyle}>{errors[name]?.message}</span>
     </div>

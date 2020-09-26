@@ -1,22 +1,23 @@
-import { OrderCreatedEvent, OrderStatus } from '@eatickets/common';
 import mongoose from 'mongoose';
-import { Order } from '../../../models/order';
+import { Message } from 'node-nats-streaming';
+import { OrderCreatedEvent, OrderStatus } from '@eatickets/common';
 import { natsWrapper } from '../../../nats-wrapper';
 import { OrderCreatedListener } from '../order-created-listener';
+import { Order } from '../../../models/order';
 
-const setUp = async () => {
+const setup = async () => {
   const listener = new OrderCreatedListener(natsWrapper.client);
 
   const data: OrderCreatedEvent['data'] = {
     id: mongoose.Types.ObjectId().toHexString(),
     version: 0,
-    userId: 'asjhdkashkjd',
-    ticket: {
-      id: 'ajkshdkjh',
-      price: 200,
-    },
+    expiresAt: 'alskdjf',
+    userId: 'alskdjf',
     status: OrderStatus.Created,
-    expiresAt: 'askjdkashkd',
+    ticket: {
+      id: 'alskdfj',
+      price: 10,
+    },
   };
 
   // @ts-ignore
@@ -27,8 +28,8 @@ const setUp = async () => {
   return { listener, data, msg };
 };
 
-it('saves the order correctly', async () => {
-  const { listener, data, msg } = await setUp();
+it('replicates the order info', async () => {
+  const { listener, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
 
@@ -38,7 +39,7 @@ it('saves the order correctly', async () => {
 });
 
 it('acks the message', async () => {
-  const { listener, data, msg } = await setUp();
+  const { listener, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
 
