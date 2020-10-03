@@ -13,9 +13,15 @@
 </p>
 
 <p align="center">
-  <img src="./landing.png" width="300" title="Landing" alt="Ticketing Microservices">
-  <img src="./page.png" width="300" title="Logout and Signin" alt="Ticketing Microservices">
-   <img src="./payment.png" width="300" title="Payment" alt="Ticketing Microservices">
+  <img src="./page.png" title="Logout and Signin" alt="Ticketing Microservices">
+</p>
+
+<p align="center">
+  <img src="./landing.png" title="Landing" alt="Ticketing Microservices">
+</p>
+
+<p align="center">
+  <img src="./payment.png" title="Payment" alt="Ticketing Microservices">
 </p>
 
 <br>
