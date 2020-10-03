@@ -3,7 +3,7 @@ import axios from "axios";
 const request = ({ req }) => {
   if (typeof window === "undefined") {
     return axios.create({
-      baseURL: "https://www.ticketing-emre-aybey-prod.xyz",
+      baseURL: process.env.BASE_URL,
       headers: req.headers,
     });
   } else {
@@ -14,5 +14,3 @@ const request = ({ req }) => {
 };
 
 export default request;
-
-// http://ingress-nginx-controller.ingress-nginx.svc.cluster.local

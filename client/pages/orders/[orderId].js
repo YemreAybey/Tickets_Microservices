@@ -35,7 +35,7 @@ const TicketShow = ({ order, currentUser }) => {
     url: '/api/payments',
     method: 'post',
     onSuccess: () => {
-      addToast('Ticket Bought', {
+      addToast('Ticket Bought - Please check your email adress', {
         appearance: 'success',
         autoDismiss: true,
       });

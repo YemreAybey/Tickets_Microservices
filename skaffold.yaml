@@ -57,3 +57,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: emre1720/mail
+      context: mail
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
