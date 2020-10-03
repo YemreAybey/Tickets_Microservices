@@ -151,14 +151,6 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 2. There is no profile section for users. There should be and users should be able to upload tehir profile pictures.
 3. Maybe users can be friends and whenever a user buys a ticket an information can be send to all friends(If the user allowed the feature).
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/YemreAybey/Tickets_Microservices/issues).
-
-1. Fork it (https://github.com/YemreAybey/Tickets_Microservices.git/fork)
-2. Create your working branch (git checkout -b [choose-a-name])
-3. Commit your changes (git commit -am 'what this commit will fix/add/improve')
-4. Push to the branch (git push origin [chosen-name])
-5. Create a new Pull Request
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
