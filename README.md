@@ -163,3 +163,8 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 Give a ⭐️ if you like this project!
 
+
+## A small note
+
+If you don't see the live version it means that I closed it since I have to pay 40 usd to run 3 nodes inside digital ocean 😸
+
