@@ -103,6 +103,7 @@ $ kubectl create secret generic jwt-secret --from-literal=jwt=anyvaluehere
 
 ```sh
 $ cd tickets
+$ npm install
 $ docker build -t your-docker-username/tickets .
 $ docker push your-docker-username/tickets
 ```
